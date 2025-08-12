@@ -1,0 +1,27 @@
+@"
+# OS / tools
+.DS_Store
+Thumbs.db
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+
+# Notebooks/outputs
+.ipynb_checkpoints/
+*.ipynb.zip
+
+# Large/raw data
+data/
+*.pcap
+*.csv
+*.parquet
+
+# Build/output
+dist/
+build/
+"@ | Out-File -Encoding UTF8 .gitignore
