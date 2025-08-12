@@ -14,7 +14,6 @@ import json
 
 warnings.filterwarnings("ignore")
 
-# ✅ Enhanced logging setup for CloudWatch
 LOG_FILE_PATH = "/home/ubuntu/qos-project/qos-logs/qos_pipeline.log"
 logging.basicConfig(
     level=logging.INFO,
@@ -114,7 +113,7 @@ def send_sns_alert(subject, message, severity="INFO"):
         return False
         
     try:
-        # Add severity emoji
+        
         emoji_map = {
             "HIGH": "🚨",
             "MODERATE": "⚠️", 
@@ -124,7 +123,7 @@ def send_sns_alert(subject, message, severity="INFO"):
         
         formatted_subject = f"{emoji_map.get(severity, '📊')} QoS Alert: {subject}"
         
-        # Create detailed message
+        
         detailed_message = f"""
 QoS System Alert
 ================
@@ -158,7 +157,7 @@ def extract_features_tshark_streaming(pcap_file, bin_size=1, max_packets=None):
     file_size_mb = os.path.getsize(pcap_file) / (1024 * 1024)
     logging.info(f"PCAP file size: {file_size_mb:.1f} MB")
     
-    # Send file size metric
+    
     send_custom_metric("PcapFileSizeMB", file_size_mb, "None")
     
     cmd = [
@@ -219,7 +218,7 @@ def extract_features_tshark_streaming(pcap_file, bin_size=1, max_packets=None):
             
         proc.wait()
         
-        # Send packet count metric
+        
         send_custom_metric("PacketsProcessed", packet_count, "Count")
         logging.info(f"Processed {packet_count} packets from {pcap_file}")
         
@@ -347,10 +346,10 @@ def predict_congestion_simple(features_df):
     trend = recent_avg - overall_avg
     
     # Enhanced thresholds with CloudWatch metrics
-    if recent_avg > 80000000:  # 80 Mbps
+    if recent_avg > 80000000:  
         severity = "High"
         send_custom_metric("HighCongestionDetected", 1, "Count")
-    elif recent_avg > 50000000:  # 50 Mbps
+    elif recent_avg > 50000000:  
         severity = "Moderate"
         send_custom_metric("ModerateCongestionDetected", 1, "Count")
     else:
@@ -383,7 +382,7 @@ def suggest_scaling(streaming_ratio, congestion_result, traffic_classes):
     send_custom_metric("HighPriorityRatio", high_priority_ratio, "Percent")
     
     if severity == "High":
-        if high_priority_ratio > 0.3:  # If >30% high-priority traffic
+        if high_priority_ratio > 0.3:  
             suggestion = f"Scale UP VMs (+3) - High priority traffic ({high_priority_ratio:.1%})"
         else:
             suggestion = "Scale UP VMs (+2) - High congestion"
@@ -440,7 +439,7 @@ def run_pipeline(pcap_file, max_packets=None):
     logging.info(f"Starting enhanced QoS pipeline for {pcap_file}")
     
     try:
-        # Extract features
+        
         features = extract_features_from_pcap(pcap_file, bin_size=1, max_packets=max_packets)
         
         if features.empty:

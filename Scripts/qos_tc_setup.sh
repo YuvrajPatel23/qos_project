@@ -1,5 +1,4 @@
 #!/bin/bash
-# Setup traffic control queues
 INTERFACE="ens5"
 HP="60mbit"
 LP="40mbit"

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Enhanced preprocessing with tshark integration
+
 PCAP_FILE="$1"
 MAX_PKTS="${2:-40000}"
 [ -z "$PCAP_FILE" ] && { echo "Usage: $0 <pcap_file> [MAX_PKTS]"; exit 1; }
@@ -13,7 +13,6 @@ mkdir -p "$LOG_DIR"
 
 echo "$(date '+%F %T') [process] start pcap=$PCAP_FILE (limit: $MAX_PKTS packets)" | tee -a "$MAIN_LOG"
 
-# Activate virtual environment and run pipeline
 cd "$PROJECT_DIR"
 source .venv/bin/activate
 

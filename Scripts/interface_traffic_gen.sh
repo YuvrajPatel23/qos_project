@@ -1,21 +1,20 @@
 #!/bin/bash
-# Generate traffic directly on the monitored interface
 
-INTERFACE="ens5"  # Your monitored interface
+INTERFACE="ens5" 
 echo "🚀 Generating traffic directly on interface: $INTERFACE"
 
 # Method 1: Generate traffic using ping flood (will be captured)
 generate_ping_traffic() {
     echo "📡 Starting ping flood traffic..."
     while true; do
-        # Ping flood to generate lots of packets
+        
         ping -f -c 100 8.8.8.8 >/dev/null 2>&1 &
         ping -f -c 100 1.1.1.1 >/dev/null 2>&1 &
         sleep 1
     done
 }
 
-# Method 2: Generate large file downloads (HTTP traffic)
+# Method 2: Generate large file download
 generate_download_traffic() {
     echo "📥 Starting download traffic..."
     while true; do

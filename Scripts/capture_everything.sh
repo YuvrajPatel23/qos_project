@@ -1,6 +1,5 @@
 
 #!/bin/bash
-# Complete QoS automation loop
 PROJECT_DIR="/home/ubuntu/qos-project"
 MAIN_LOG="$PROJECT_DIR/qos-logs/qos_main.log"
 CAPTURE_DURATION="${1:-20}"

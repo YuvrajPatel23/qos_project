@@ -1,5 +1,4 @@
 #!/bin/bash
-# Enhanced QoS application with severity-based control
 INTERFACE="ens5"
 CSV_FILE="/home/ubuntu/qos-project/qos_results.csv"
 MAIN_LOG="/home/ubuntu/qos-project/qos-logs/qos_main.log"
@@ -12,9 +11,9 @@ fi
 
 # Get the most recent result
 LAST_LINE=$(tail -n 1 "$CSV_FILE")
-RAW_SUGG=$(echo "$LAST_LINE" | awk -F, '{print $9}')   # scaling_suggestion column
-SEVERITY=$(echo "$LAST_LINE" | awk -F, '{print $8}')   # congestion_severity column
-CONGESTION_LEVEL=$(echo "$LAST_LINE" | awk -F, '{print $7}')  # congestion_level column
+RAW_SUGG=$(echo "$LAST_LINE" | awk -F, '{print $9}')  
+SEVERITY=$(echo "$LAST_LINE" | awk -F, '{print $8}')   
+CONGESTION_LEVEL=$(echo "$LAST_LINE" | awk -F, '{print $7}')  
 
 # Parse scaling decision
 if echo "$RAW_SUGG" | grep -qi "Scale UP.*+3"; then

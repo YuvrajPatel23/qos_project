@@ -8,7 +8,7 @@ echo "📊 Step 1: Baseline measurement (normal traffic)..."
 echo ""
 echo "🔥 Step 2: Starting HIGH traffic generation..."
 ./scripts/interface_traffic_gen.sh &
-sleep 10  # Let traffic build up
+sleep 10  
 
 echo ""
 echo "📈 Step 3: Measuring under HIGH load..."

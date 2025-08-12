@@ -1,5 +1,4 @@
 #!/bin/bash
-# Enhanced capture script with better logging
 DURATION="${1:-20}"
 INTERFACE="ens5"
 PROJECT_DIR="/home/ubuntu/qos-project"
