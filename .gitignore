@@ -24,4 +24,6 @@ data/
 # Build/output
 dist/
 build/
-"@ | Out-File -Encoding UTF8 .gitignore
+"@ | Out-File -Encoding UTF8 .gitignoreFinal_Presentation.mp4
+Final_Presentation.mp4
+Final_Presentation.mp4
